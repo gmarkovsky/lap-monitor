@@ -2,4 +2,9 @@
 <resources>
     <string name="hello">Hello World, CheckPoints!</string>
     <string name="app_name">Lap Monitor</string>
+    <string name="checkPointType">Тип контрольной точки</string>
+    <string name="byTime">По времени</string>
+    <string name="byDistance">По расстоянию</string>
+    <string name="ok">Ok</string>
+    <string name="back">Назад</string>
 </resources>
