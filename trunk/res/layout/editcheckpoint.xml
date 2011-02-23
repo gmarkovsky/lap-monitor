@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+    <TextView
+    	android:id="@+id/textView1"
+    	android:layout_alignParentLeft="true"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="@string/checkPointType">
+    </TextView>
+    <RadioGroup
+    	android:layout_width="wrap_content"
+    	android:layout_below="@+id/textView1"
+    	android:id="@+id/radioGroup1"
+    	android:layout_height="wrap_content"
+    	android:layout_alignLeft="@+id/textView1"
+    	android:layout_alignRight="@+id/textView1">
+        	<RadioButton
+         		android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/radio0"
+				android:checked="true"
+				android:text="@string/byTime">
+			</RadioButton>
+			<RadioButton
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/radio1"
+				android:text="@string/byDistance">
+			</RadioButton>
+    </RadioGroup>
+    <Button
+    	android:layout_alignParentBottom="true"
+    	android:id="@+id/button1"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="@string/ok">
+    </Button>
+</RelativeLayout>
