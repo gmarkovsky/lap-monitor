@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, LapMonitor!</string>
+    <string name="app_name">Lap Monitor</string>
+    <string name="title">Монитор дистанции</string>
+    <string name="checkedit">Редактирование контрольной точки</string>
+</resources>
