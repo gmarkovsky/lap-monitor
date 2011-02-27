@@ -36,4 +36,20 @@ public class DistanceCheckPoint {
 		this.distance = distance;
 		this.single = single;
 	}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	public boolean isSingle() {
+		return single;
+	}
+
+	public void setSingle(boolean single) {
+		this.single = single;
+	}
 }
