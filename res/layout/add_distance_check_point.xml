@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+    <Button android:layout_alignParentBottom="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/addDisCPCancelButton" android:text="@string/ok"></Button>
+    <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_toRightOf="@+id/addDisCPCancelButton" android:layout_alignTop="@+id/addDisCPCancelButton" android:layout_alignBottom="@+id/addDisCPCancelButton" android:id="@+id/addDisCPOKButton" android:text="@string/cancel"></Button>
+    <EditText android:text="1000" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignParentLeft="true" android:id="@+id/edDistance"></EditText>
+    <Spinner android:layout_toRightOf="@+id/edDistance" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignTop="@+id/edDistance" android:layout_alignBottom="@+id/edDistance" android:id="@+id/spDisMes"></Spinner>
+</RelativeLayout>

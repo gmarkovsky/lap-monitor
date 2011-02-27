@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, CheckPoints!</string>
+    <string name="hello">Hello World, LapMonitor!</string>
     <string name="app_name">Lap Monitor</string>
-    <string name="checkPointType">Тип контрольной точки</string>
-    <string name="byTime">По времени</string>
-    <string name="byDistance">По расстоянию</string>
+    <string name="title">Монитор дистанции</string>
+    <string name="checkedit">Редактирование контрольной точки</string>
     <string name="ok">Ok</string>
-    <string name="back">Назад</string>
+    <string name="cancel">Cancel</string>
+    <string-array name="Measures">
+        <item>m</item>
+        <item>km</item>
+        <item>ft</item>
+    </string-array>
 </resources>

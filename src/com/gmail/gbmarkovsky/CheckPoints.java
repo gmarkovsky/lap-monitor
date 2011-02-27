@@ -1,32 +1,26 @@
 package com.gmail.gbmarkovsky;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class CheckPoints extends Activity {
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testlay);
-        /*Button button = (Button) findViewById(R.id.button1);
-        button.setOnClickListener(new OnClickListener() {
+        setContentView(R.layout.check_points);
+        Button add = (Button) findViewById(R.id.button_add_CP);
+        add.setOnClickListener(new OnClickListener() {
 			
-			public void onClick(View v) {
-				// TODO обработка добавления контрольной точки
-				RadioGroup rg = (RadioGroup)  findViewById(R.id.radioGroup1);
-				int chekedId = rg.getCheckedRadioButtonId();
-				TextView tv = (TextView) findViewById(R.id.textView11);
-				tv.setText("Выбран вариант " + Integer.toString(chekedId));
-				setContentView(R.layout.main);
+			public void onClick(View arg0) {
+				Intent intent = new Intent(CheckPoints.this, AddDistanceCheckPoint.class);
+				startActivity(intent);
 			}
 		});
-        Button back = (Button) findViewById(R.id.button2);
-        back.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				setContentView(R.layout.editcheckpoint);
-			}
-		});*/
+        //ListView lv = (ListView) findViewById(R.id.listView1);
+        //lv.addView(new TextView(this));
     }
 }
