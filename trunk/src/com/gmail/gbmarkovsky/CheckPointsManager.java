@@ -55,8 +55,15 @@ public class CheckPointsManager {
 	 * @param time
 	 */
 	public void checkTime(long time) {
+		for(TimeCheckPoint t: times) {
+			if (t.getTime() - time >= 0) {
+				if (t.isSingle()) {
+					times.remove(t);
+				}
+				// Тут будет вызов метода класса-оповестителя о прохождении контрольной точки
+			}
+		}
 		
-		// Тут будет вызов метода класса-оповестителя о прохождении контрольной точки
 	}
 	
 	/**
@@ -64,7 +71,13 @@ public class CheckPointsManager {
 	 * @param distance
 	 */
 	public void checkDistance(double distance) {
-		
-		// Тут будет вызов метода класса-оповестителя о прохождении контрольной точки
+		for(DistanceCheckPoint d: distances) {
+			if (d.getDistance() - distance >= 0) {
+				if (d.isSingle()) {
+					distances.remove(d);
+				}
+				// Тут будет вызов метода класса-оповестителя о прохождении контрольной точки
+			}
+		}
 	}
 }

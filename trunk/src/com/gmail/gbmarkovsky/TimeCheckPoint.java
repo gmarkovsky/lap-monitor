@@ -19,6 +19,11 @@ public class TimeCheckPoint {
 	 */
 	public boolean single;
 	
+	/**
+	 * Количество прохождений контрольной точки	
+	 */
+	public int count = 0;
+	
 	public TimeCheckPoint(long time) {
 		this.time = time;
 		this.single = true;
@@ -30,7 +35,10 @@ public class TimeCheckPoint {
 	}
 
 	public long getTime() {
-		return time;
+		if (isSingle()) {
+			return time;
+		}
+		return time * (count + 1);
 	}
 
 	public void setTime(long time) {
@@ -43,5 +51,11 @@ public class TimeCheckPoint {
 
 	public void setSingle(boolean single) {
 		this.single = single;
+	}
+	
+	public void passed() {
+		if (!isSingle()) {
+			count++;
+		}
 	}
 }

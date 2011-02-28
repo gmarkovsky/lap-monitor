@@ -20,6 +20,11 @@ public class DistanceCheckPoint {
 	public boolean single;
 	
 	/**
+	 * Количество прохождений контрольной точки	
+	 */
+	public int count = 0;
+	
+	/**
 	 * Создание контрольной точки
 	 * @param distance
 	 */
@@ -38,7 +43,10 @@ public class DistanceCheckPoint {
 	}
 
 	public double getDistance() {
-		return distance;
+		if (isSingle()) {
+			return distance;
+		}
+		return distance * (count + 1);
 	}
 
 	public void setDistance(double distance) {
@@ -51,5 +59,16 @@ public class DistanceCheckPoint {
 
 	public void setSingle(boolean single) {
 		this.single = single;
+	}
+	
+	public void passed() {
+		if (!isSingle()) {
+			count++;
+		}
+	}
+	
+	@Override
+	public String toString() {
+		return Double.toString(distance) + " m";
 	}
 }
