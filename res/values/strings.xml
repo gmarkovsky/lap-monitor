@@ -9,6 +9,6 @@
     <string-array name="Measures">
         <item>m</item>
         <item>km</item>
-        <item>ft</item>
     </string-array>
+        <string name="edit">Edit</string>
 </resources>

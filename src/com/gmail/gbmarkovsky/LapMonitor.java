@@ -27,7 +27,7 @@ public class LapMonitor extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
 		case R.id.miCheckPoints:
-			Intent intent = new Intent(this, CheckPoints.class);
+			Intent intent = new Intent(this, DistanceCheckPoints.class);
 			startActivity(intent);
 			break;
 
