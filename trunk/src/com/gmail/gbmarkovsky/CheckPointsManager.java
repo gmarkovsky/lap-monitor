@@ -1,5 +1,7 @@
 package com.gmail.gbmarkovsky;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -21,11 +23,14 @@ public class CheckPointsManager {
 	 */
 	private Collection<DistanceCheckPoint> distances;
 	
+	private final PropertyChangeSupport propertyChangeSupport;
+	
 	private static CheckPointsManager instance;
 	
 	private CheckPointsManager() {
 		times = new ArrayList<TimeCheckPoint>();
 		distances = new ArrayList<DistanceCheckPoint>();
+		propertyChangeSupport = new PropertyChangeSupport(this);
 	}
 	
 	public static void create() {
@@ -47,8 +52,18 @@ public class CheckPointsManager {
 	 * Запрос на создание контрольной точки по расстоянию
 	 */
 	public void createDistanceCheckPoint(double distance, boolean single) {
-		 distances.add(new DistanceCheckPoint(distance, single));
-	 }
+		DistanceCheckPoint newValue = new DistanceCheckPoint(distance, single);
+		distances.add(newValue);
+		firePropertyChange(ADDED_DISTANCE_CHECK_POINT, null, newValue);
+	}
+	
+	public Collection<DistanceCheckPoint> getDistanceCheckPoints() {
+		return distances;
+	}
+	
+	public Collection<TimeCheckPoint> getTimeCheckPoints() {
+		return times;
+	}
 	
 	/**
 	 * Вызывается классом, управляющим временем
@@ -80,4 +95,27 @@ public class CheckPointsManager {
 			}
 		}
 	}
+	
+	public void removeCheckPoint(DistanceCheckPoint checkPoint) {
+		distances.remove(checkPoint);
+	}
+	
+	public void removeCheckPoint(TimeCheckPoint checkPoint) {
+		times.remove(checkPoint);
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener p) {
+		propertyChangeSupport.addPropertyChangeListener(p);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener p) {
+		propertyChangeSupport.removePropertyChangeListener(p);
+	}
+
+	protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+		propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
+	}
+	
+	public static final String ADDED_DISTANCE_CHECK_POINT = "addedDistanceCheckPoint";
+	public static final String ADDED_TIME_CHECK_POINT = "addedTimeCheckPoint";
 }

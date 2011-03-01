@@ -14,7 +14,7 @@
             </intent-filter>
         </activity>
         <activity android:name="EditCheckPoint"></activity>
-        <activity android:name="CheckPoints"></activity>
+        <activity android:name="DistanceCheckPoints"></activity>
         <activity android:name="AddDistanceCheckPoint"></activity>
 
     </application>
