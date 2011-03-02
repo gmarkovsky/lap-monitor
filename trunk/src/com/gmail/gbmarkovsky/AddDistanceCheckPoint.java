@@ -1,6 +1,8 @@
 package com.gmail.gbmarkovsky;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,7 +42,22 @@ public class AddDistanceCheckPoint extends Activity {
         okButton.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View arg0) {
-				double numDis = Integer.parseInt(AddDistanceCheckPoint.this.distance.getText().toString());
+				double numDis = 0;
+				try {
+					numDis = Double.parseDouble(AddDistanceCheckPoint.this.distance.getText().toString());
+				} catch (Exception e) {
+					AlertDialog.Builder builder = new AlertDialog.Builder(AddDistanceCheckPoint.this);
+					builder.setMessage("Задано не число!")
+					       .setCancelable(false)
+					       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					           public void onClick(DialogInterface dialog, int id) {
+					                dialog.cancel();
+					           }
+					       });
+					AlertDialog alert = builder.create();
+					alert.show();
+					return;
+				}
 				double distance = numDis;
 				if (mes.equals("km")) {
 					distance = numDis * 1000;
