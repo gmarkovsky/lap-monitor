@@ -1,5 +1,8 @@
 package com.gmail.gbmarkovsky;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,12 +10,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class LapMonitor extends Activity {
+public class LapMonitor extends Activity implements PropertyChangeListener {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CheckPointsManager.create();
+        TimeController.create();
+        TimeController.getInstance().addPropertyChangeListener(this);
         setContentView(R.layout.main);
     }
     
@@ -36,4 +41,9 @@ public class LapMonitor extends Activity {
 		}
     	return super.onOptionsItemSelected(item);
     }
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+			
+	}
 }
