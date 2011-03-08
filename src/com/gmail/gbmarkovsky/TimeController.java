@@ -27,6 +27,7 @@ public class TimeController {
 			public void run() {
 				// TODO Auto-generated method stub
 				time += 50;
+				firePropertyChange("FFF", time-50, time);
 			}
 		};
 		timer.schedule(task, 0, 50);

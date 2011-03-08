@@ -9,16 +9,52 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.Chronometer.OnChronometerTickListener;
+import android.widget.TextView;
 
 public class LapMonitor extends Activity implements PropertyChangeListener {
+	private Chronometer chronometer;
+	private Button startButton;
+	private TextView text;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CheckPointsManager.create();
-        TimeController.create();
-        TimeController.getInstance().addPropertyChangeListener(this);
+        //TimeController.create();
+        //TimeController.getInstance().addPropertyChangeListener(this);
         setContentView(R.layout.main);
+        chronometer = (Chronometer) findViewById(R.id.main_chronometer);
+        startButton = (Button) findViewById(R.id.button_start);
+        text = (TextView) findViewById(R.id.textView2);
+        initListeners();
+    }
+    
+    private void initListeners() {
+      startButton.setOnClickListener(new OnClickListener() {
+		
+		public void onClick(View arg0) {
+			if (startButton.getText().equals("Start")) {
+				startButton.setText("Stop");
+				//chronometer.setBase(1000);
+				chronometer.start();
+			} else {
+				startButton.setText("Start");
+				chronometer.stop();
+			}
+		}
+	});
+      chronometer.setOnChronometerTickListener(new OnChronometerTickListener() {
+		
+		public void onChronometerTick(Chronometer chronometer) {
+			text.setText(chronometer.getText());
+		}
+	});
     }
     
     @Override
@@ -42,8 +78,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     	return super.onOptionsItemSelected(item);
     }
 
-	@Override
 	public void propertyChange(PropertyChangeEvent event) {
-			
+		//chronometer.setText(event.getNewValue().toString());
 	}
 }

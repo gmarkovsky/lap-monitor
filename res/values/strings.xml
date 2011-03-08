@@ -11,4 +11,5 @@
         <item>km</item>
     </string-array>
         <string name="edit">Edit</string>
+        <string name="start">Start</string>
 </resources>
