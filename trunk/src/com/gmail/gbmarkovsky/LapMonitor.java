@@ -6,6 +6,7 @@ import java.beans.PropertyChangeListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,8 +27,8 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CheckPointsManager.create();
-        //TimeController.create();
-        //TimeController.getInstance().addPropertyChangeListener(this);
+        TimeController.create();
+        TimeController.getInstance().addPropertyChangeListener(this);
         setContentView(R.layout.main);
         chronometer = (Chronometer) findViewById(R.id.main_chronometer);
         startButton = (Button) findViewById(R.id.button_start);
@@ -41,7 +42,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 		public void onClick(View arg0) {
 			if (startButton.getText().equals("Start")) {
 				startButton.setText("Stop");
-				//chronometer.setBase(1000);
+				chronometer.setBase(SystemClock.elapsedRealtime());
 				chronometer.start();
 			} else {
 				startButton.setText("Start");
@@ -53,6 +54,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 		
 		public void onChronometerTick(Chronometer chronometer) {
 			text.setText(chronometer.getText());
+			TimeController.getInstance().tick();
 		}
 	});
     }
@@ -79,6 +81,6 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     }
 
 	public void propertyChange(PropertyChangeEvent event) {
-		//chronometer.setText(event.getNewValue().toString());
+		text.setText(event.getNewValue().toString());
 	}
 }

@@ -1,5 +1,6 @@
 package com.gmail.gbmarkovsky;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Collection;
  * @author george
  *
  */
-public class CheckPointsManager {
+public class CheckPointsManager implements PropertyChangeListener {
 	
 	/**
 	 * Набор для хранения контрольных точек по времени
@@ -118,4 +119,11 @@ public class CheckPointsManager {
 	
 	public static final String ADDED_DISTANCE_CHECK_POINT = "addedDistanceCheckPoint";
 	public static final String ADDED_TIME_CHECK_POINT = "addedTimeCheckPoint";
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		if (event.getPropertyName().equals(TimeController.TICK)) {
+			checkTime((Long) event.getNewValue());
+		}
+	}
 }

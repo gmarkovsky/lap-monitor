@@ -69,6 +69,12 @@ public class DistanceCheckPoint {
 	
 	@Override
 	public String toString() {
-		return Double.toString(distance) + " m";
+		String s;
+		if (isSingle()) {
+			s = "";
+		} else {
+			s = " *";
+		}
+		return Double.toString(distance) + " m" + s;
 	}
 }
