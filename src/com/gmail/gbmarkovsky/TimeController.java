@@ -2,8 +2,6 @@ package com.gmail.gbmarkovsky;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Управляет работой со временем. Сообщает слушателям о изменении вермени.
@@ -16,21 +14,9 @@ public class TimeController {
 	
 	private static TimeController instance;
 	private final PropertyChangeSupport propertyChangeSupport;
-	private Timer timer;
 	
 	private TimeController() {
 		propertyChangeSupport = new PropertyChangeSupport(this);
-		timer = new Timer(true);
-		TimerTask task = new TimerTask() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				time += 50;
-				firePropertyChange("FFF", time-50, time);
-			}
-		};
-		timer.schedule(task, 0, 50);
 	}
 	
 	public static void create() {
@@ -39,6 +25,11 @@ public class TimeController {
 	
 	public static TimeController getInstance() {
 		return instance;
+	}
+	
+	public void tick() {
+		time += 1000;
+		firePropertyChange(TICK, time-1000, time);
 	}
 	
 	public void addPropertyChangeListener(PropertyChangeListener p) {
@@ -52,4 +43,6 @@ public class TimeController {
 	protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
 		propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
 	}
+	
+	public static final String TICK = "tick";
 }

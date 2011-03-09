@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -20,6 +21,7 @@ public class AddDistanceCheckPoint extends Activity {
 	private Button cancelButton;
 	private Spinner mesure;
 	private EditText distance;
+	private CheckBox isMultiple;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class AddDistanceCheckPoint extends Activity {
         		android.R.layout.simple_spinner_dropdown_item);
         mesure = (Spinner) findViewById(R.id.spDisMes);
         mesure.setAdapter(arrayAdapter);
+        isMultiple = (CheckBox) findViewById(R.id.isMultiple_check_box);
 	}
 	
 	private void initListeners() {
@@ -62,7 +65,8 @@ public class AddDistanceCheckPoint extends Activity {
 				if (mes.equals("km")) {
 					distance = numDis * 1000;
 				}
-				CheckPointsManager.getInstance().createDistanceCheckPoint(distance, true);
+				boolean isSingle = !isMultiple.isChecked();
+				CheckPointsManager.getInstance().createDistanceCheckPoint(distance, isSingle);
 				finish();
 			}
 		});
