@@ -120,7 +120,6 @@ public class CheckPointsManager implements PropertyChangeListener {
 	public static final String ADDED_DISTANCE_CHECK_POINT = "addedDistanceCheckPoint";
 	public static final String ADDED_TIME_CHECK_POINT = "addedTimeCheckPoint";
 
-	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		if (event.getPropertyName().equals(TimeController.TICK)) {
 			checkTime((Long) event.getNewValue());

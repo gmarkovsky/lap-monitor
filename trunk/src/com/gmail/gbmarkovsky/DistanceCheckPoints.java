@@ -23,7 +23,7 @@ public class DistanceCheckPoints extends Activity implements PropertyChangeListe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.check_points);
+        setContentView(R.layout.distance_check_points);
         initControls();
         initListeners();
         CheckPointsManager.getInstance().addPropertyChangeListener(this);

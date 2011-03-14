@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Menu;
@@ -21,6 +22,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 	private Chronometer chronometer;
 	private Button startButton;
 	private TextView text;
+	private MediaPlayer mp;
 	
     /** Called when the activity is first created. */
     @Override
@@ -34,6 +36,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
         startButton = (Button) findViewById(R.id.button_start);
         text = (TextView) findViewById(R.id.textView2);
         initListeners();
+        mp = MediaPlayer.create(this, R.raw.mavrik);
     }
     
     private void initListeners() {
@@ -44,9 +47,11 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 				startButton.setText("Stop");
 				chronometer.setBase(SystemClock.elapsedRealtime());
 				chronometer.start();
+				mp.start();
 			} else {
 				startButton.setText("Start");
 				chronometer.stop();
+				mp.stop();		
 			}
 		}
 	});
@@ -68,12 +73,17 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+    	Intent intent;
     	switch (item.getItemId()) {
 		case R.id.miCheckPoints:
-			Intent intent = new Intent(this, DistanceCheckPoints.class);
+			intent = new Intent(this, DistanceCheckPoints.class);
 			startActivity(intent);
 			break;
-
+		case R.id.miTimeCheckPoints:
+			intent = new Intent(this, TimeCheckPoints.class);
+			startActivity(intent);
+			break;
+			
 		default:
 			break;
 		}
