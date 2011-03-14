@@ -16,6 +16,8 @@
         <activity android:name="EditCheckPoint"></activity>
         <activity android:name="DistanceCheckPoints"></activity>
         <activity android:name="AddDistanceCheckPoint"></activity>
+        <activity android:name="AddTimeCheckPoint"></activity>
+        <activity android:name="TimeCheckPoints"></activity>
 
     </application>
 </manifest>
