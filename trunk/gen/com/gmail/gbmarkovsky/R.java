@@ -33,11 +33,12 @@ public final class R {
         public static final int linearLayout2=0x7f090007;
         public static final int listView1=0x7f09000c;
         public static final int main_chronometer=0x7f09000d;
-        public static final int miCheckPoints=0x7f090011;
-        public static final int miTimeCheckPoints=0x7f090012;
+        public static final int miCheckPoints=0x7f090012;
+        public static final int miTimeCheckPoints=0x7f090013;
         public static final int spDisMes=0x7f090004;
         public static final int textView1=0x7f090005;
         public static final int textView2=0x7f09000f;
+        public static final int time_cp_listview=0x7f090011;
     }
     public static final class layout {
         public static final int add_distance_check_point=0x7f030000;

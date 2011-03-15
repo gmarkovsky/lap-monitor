@@ -9,7 +9,6 @@ import java.beans.PropertyChangeSupport;
  *
  */
 public class TimeController {
-
 	private long time;
 	
 	private static TimeController instance;
@@ -30,6 +29,12 @@ public class TimeController {
 	public void tick() {
 		time += 1000;
 		firePropertyChange(TICK, time-1000, time);
+	}
+	
+	public void reset() {
+		long oldTime = time;
+		time = 0;
+		firePropertyChange(TICK, oldTime, time);
 	}
 	
 	public void addPropertyChangeListener(PropertyChangeListener p) {

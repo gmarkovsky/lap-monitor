@@ -46,7 +46,9 @@ public class CheckPointsManager implements PropertyChangeListener {
 	 * Запрос на создание контрольной точки по времени
 	 */
 	public void createTimeCheckPoint(long time, boolean single) {
-		times.add(new TimeCheckPoint(time, single));
+		TimeCheckPoint newValue = new TimeCheckPoint(time, single);
+		times.add(newValue);
+		firePropertyChange(ADDED_TIME_CHECK_POINT, null, newValue);
 	}
 	
 	/**
@@ -72,11 +74,13 @@ public class CheckPointsManager implements PropertyChangeListener {
 	 */
 	public void checkTime(long time) {
 		for(TimeCheckPoint t: times) {
-			if (t.getTime() - time >= 0) {
+			if (t.getTime() - time <= 0) {
 				if (t.isSingle()) {
 					times.remove(t);
 				}
 				// Тут будет вызов метода класса-оповестителя о прохождении контрольной точки
+				NotificationManager.getInstance().notifyTime(t);
+				break;
 			}
 		}
 		
@@ -88,7 +92,7 @@ public class CheckPointsManager implements PropertyChangeListener {
 	 */
 	public void checkDistance(double distance) {
 		for(DistanceCheckPoint d: distances) {
-			if (d.getDistance() - distance >= 0) {
+			if (d.getDistance() - distance <= 0) {
 				if (d.isSingle()) {
 					distances.remove(d);
 				}
