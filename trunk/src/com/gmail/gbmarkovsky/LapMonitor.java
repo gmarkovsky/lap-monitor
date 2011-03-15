@@ -47,6 +47,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 				startButton.setText("Stop");
 				chronometer.setBase(SystemClock.elapsedRealtime());
 				chronometer.start();
+				TimeController.getInstance().start();
 			} else {
 				startButton.setText("Start");
 				chronometer.stop();
@@ -56,7 +57,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
       chronometer.setOnChronometerTickListener(new OnChronometerTickListener() {
 		
 		public void onChronometerTick(Chronometer chronometer) {
-			TimeController.getInstance().tick();
+			//TimeController.getInstance().tick();
 		}
 	});
     }
