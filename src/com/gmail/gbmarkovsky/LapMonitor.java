@@ -5,7 +5,6 @@ import java.beans.PropertyChangeListener;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Menu;
@@ -22,43 +21,41 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 	private Chronometer chronometer;
 	private Button startButton;
 	private TextView text;
-	private MediaPlayer mp;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CheckPointsManager.create();
+        NotificationManager.create(this);
         TimeController.create();
         TimeController.getInstance().addPropertyChangeListener(this);
+        TimeController.getInstance().addPropertyChangeListener(CheckPointsManager.getInstance());
         setContentView(R.layout.main);
         chronometer = (Chronometer) findViewById(R.id.main_chronometer);
         startButton = (Button) findViewById(R.id.button_start);
         text = (TextView) findViewById(R.id.textView2);
         initListeners();
-        mp = MediaPlayer.create(this, R.raw.mavrik);
     }
     
     private void initListeners() {
       startButton.setOnClickListener(new OnClickListener() {
 		
 		public void onClick(View arg0) {
+			TimeController.getInstance().reset();
 			if (startButton.getText().equals("Start")) {
 				startButton.setText("Stop");
 				chronometer.setBase(SystemClock.elapsedRealtime());
 				chronometer.start();
-				mp.start();
 			} else {
 				startButton.setText("Start");
 				chronometer.stop();
-				mp.stop();		
 			}
 		}
 	});
       chronometer.setOnChronometerTickListener(new OnChronometerTickListener() {
 		
 		public void onChronometerTick(Chronometer chronometer) {
-			text.setText(chronometer.getText());
 			TimeController.getInstance().tick();
 		}
 	});

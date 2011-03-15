@@ -2,6 +2,7 @@ package com.gmail.gbmarkovsky;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Collection;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -42,6 +43,11 @@ public class DistanceCheckPoints extends Activity implements PropertyChangeListe
 		delButton = (Button) findViewById(R.id.button_del_CP);
 		listView = (ListView) findViewById(R.id.listView1);
 		arrayAdapter = new ArrayAdapter<DistanceCheckPoint>(this, android.R.layout.simple_list_item_1);
+		Collection<DistanceCheckPoint> points = CheckPointsManager.getInstance().getDistanceCheckPoints();
+		for (DistanceCheckPoint t: points) {
+			arrayAdapter.add(t);
+		}
+		listView.setAdapter(arrayAdapter);
 	}
 	
 	private void initListeners() {

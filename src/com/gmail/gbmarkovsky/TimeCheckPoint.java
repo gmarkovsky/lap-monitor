@@ -58,4 +58,18 @@ public class TimeCheckPoint {
 			count++;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		int seconds = (int) (time / 1000);
+		int minutes = seconds / 60;
+		seconds = seconds % 60;
+		String s;
+		if (isSingle()) {
+			s = "";
+		} else {
+			s = " *";
+		}
+		return Integer.toString(minutes) + " m:" + Integer.toString(seconds) + " s" + s;
+	}
 }
