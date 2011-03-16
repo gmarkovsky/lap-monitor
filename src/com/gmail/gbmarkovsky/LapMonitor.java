@@ -15,12 +15,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
-import android.widget.TextView;
+//import android.widget.TextView;
 
 public class LapMonitor extends Activity implements PropertyChangeListener {
 	private Chronometer chronometer;
 	private Button startButton;
-	private TextView text;
+	//private TextView text;
 	private OnChronometerTickListener chronoTick;
 	
     /** Called when the activity is first created. */
@@ -35,7 +35,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
         setContentView(R.layout.main);
         chronometer = (Chronometer) findViewById(R.id.main_chronometer);
         startButton = (Button) findViewById(R.id.button_start);
-        text = (TextView) findViewById(R.id.textView2);
+        //text = (TextView) findViewById(R.id.textView2);
         initListeners();
         chronoTick = new OnChronometerTickListener() {
     		
@@ -51,22 +51,22 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     }
     
     private void initListeners() {
-      startButton.setOnClickListener(new OnClickListener() {
+    	startButton.setOnClickListener(new OnClickListener() {
 		
-		public void onClick(View arg0) {
-			TimeController.getInstance().reset();
-			if (startButton.getText().equals("Start")) {
-				startButton.setText("Stop");
-				chronometer.setBase(SystemClock.elapsedRealtime());
-				chronometer.setOnChronometerTickListener(chronoTick);
-				chronometer.start();
-			} else {
-				startButton.setText("Start");
-				chronometer.stop();
-			}
-		}
-	});
-      
+    		public void onClick(View arg0) {
+    			TimeController.getInstance().reset();
+    			if (startButton.getText().equals("Start")) {
+    				startButton.setText("Stop");
+    				chronometer.setBase(SystemClock.elapsedRealtime());
+    				chronometer.start();
+    			} else {
+    				startButton.setText("Start");
+    				chronometer.stop();
+    				chronometer.setBase(SystemClock.elapsedRealtime());
+    			}
+    		}
+    	});
+    	chronometer.setOnChronometerTickListener(chronoTick);
     }
     
     @Override
@@ -96,6 +96,6 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     }
 
 	public void propertyChange(PropertyChangeEvent event) {
-		text.setText(event.getNewValue().toString());
+		//text.setText(event.getNewValue().toString());
 	}
 }
