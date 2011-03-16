@@ -21,24 +21,30 @@ public final class R {
     public static final class id {
         public static final int addDisCPCancelButton=0x7f090001;
         public static final int addDisCPOKButton=0x7f090000;
-        public static final int add_time_cp_button=0x7f090010;
-        public static final int button_add_CP=0x7f090008;
-        public static final int button_del_CP=0x7f09000a;
-        public static final int button_edit_CP=0x7f090009;
-        public static final int button_start=0x7f09000e;
+        public static final int add_time_cp_button=0x7f090016;
+        public static final int button_add_CP=0x7f09000e;
+        public static final int button_cancel_add_cp_time=0x7f09000d;
+        public static final int button_del_CP=0x7f090010;
+        public static final int button_edit_CP=0x7f09000f;
+        public static final int button_ok_add_cp_time=0x7f09000c;
+        public static final int button_start=0x7f090015;
         public static final int edDistance=0x7f090002;
-        public static final int horizontalScrollView1=0x7f09000b;
+        public static final int horizontalScrollView1=0x7f090011;
         public static final int isMultiple_check_box=0x7f090003;
+        public static final int isMultiple_time_cp=0x7f09000a;
         public static final int linearLayout1=0x7f090006;
-        public static final int linearLayout2=0x7f090007;
-        public static final int listView1=0x7f09000c;
-        public static final int main_chronometer=0x7f09000d;
-        public static final int miCheckPoints=0x7f090012;
-        public static final int miTimeCheckPoints=0x7f090013;
+        public static final int linearLayout2=0x7f09000b;
+        public static final int listView1=0x7f090012;
+        public static final int main_chronometer=0x7f090014;
+        public static final int miCheckPoints=0x7f090018;
+        public static final int miTimeCheckPoints=0x7f090019;
+        public static final int relativeLayout1=0x7f090013;
         public static final int spDisMes=0x7f090004;
         public static final int textView1=0x7f090005;
-        public static final int textView2=0x7f09000f;
-        public static final int time_cp_listview=0x7f090011;
+        public static final int textView2=0x7f090008;
+        public static final int time_cp_listview=0x7f090017;
+        public static final int time_minutes=0x7f090007;
+        public static final int time_seconds=0x7f090009;
     }
     public static final class layout {
         public static final int add_distance_check_point=0x7f030000;

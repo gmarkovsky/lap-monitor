@@ -2,6 +2,16 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent" android:orientation="vertical">
     <TextView android:text="Точки по времени" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:id="@+id/linearLayout1">
+        <EditText android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/time_minutes" android:text="00"></EditText>
+        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/textView2" android:textSize="16pt" android:text=":"></TextView>
+        <EditText android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/time_seconds" android:text="30"></EditText>
+    </LinearLayout>
+    <CheckBox android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Повторяющаяся" android:id="@+id/isMultiple_time_cp"></CheckBox>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:id="@+id/linearLayout2">
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/ok" android:id="@+id/button_ok_add_cp_time"></Button>
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/cancel" android:id="@+id/button_cancel_add_cp_time"></Button>
+    </LinearLayout>
 </LinearLayout>
