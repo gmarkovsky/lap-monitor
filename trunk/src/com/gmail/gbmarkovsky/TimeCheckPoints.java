@@ -42,9 +42,6 @@ public class TimeCheckPoints extends Activity implements PropertyChangeListener 
         addButton.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View arg0) {
-				CheckPointsManager.getInstance().createTimeCheckPoint(15000, true);
-				CheckPointsManager.getInstance().createTimeCheckPoint(150000, true);
-				CheckPointsManager.getInstance().createTimeCheckPoint(2300000, true);
 				Intent intent = new Intent(TimeCheckPoints.this, AddTimeCheckPoint.class);
 				startActivity(intent);
 			}

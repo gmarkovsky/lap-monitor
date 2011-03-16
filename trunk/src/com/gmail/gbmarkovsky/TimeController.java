@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  *
  */
 public class TimeController {
-	private long time;
+	private long time = -1000;
 	ScheduledThreadPoolExecutor timer;
 	Runnable runtask;
 	private static TimeController instance;

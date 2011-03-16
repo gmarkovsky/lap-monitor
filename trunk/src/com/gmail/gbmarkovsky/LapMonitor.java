@@ -21,6 +21,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 	private Chronometer chronometer;
 	private Button startButton;
 	private TextView text;
+	private OnChronometerTickListener chronoTick;
 	
     /** Called when the activity is first created. */
     @Override
@@ -36,6 +37,17 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
         startButton = (Button) findViewById(R.id.button_start);
         text = (TextView) findViewById(R.id.textView2);
         initListeners();
+        chronoTick = new OnChronometerTickListener() {
+    		
+    		public void onChronometerTick(Chronometer chronometer) {
+    			TimeController.getInstance().tick();
+    		}
+    	};
+    	// тестовые точки
+    	CheckPointsManager.getInstance().createTimeCheckPoint(18000, true);
+    	CheckPointsManager.getInstance().createTimeCheckPoint(40000, true);
+    	CheckPointsManager.getInstance().createDistanceCheckPoint(1000, true);
+    	CheckPointsManager.getInstance().createDistanceCheckPoint(2000, true);
     }
     
     private void initListeners() {
@@ -46,20 +58,15 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 			if (startButton.getText().equals("Start")) {
 				startButton.setText("Stop");
 				chronometer.setBase(SystemClock.elapsedRealtime());
+				chronometer.setOnChronometerTickListener(chronoTick);
 				chronometer.start();
-				TimeController.getInstance().start();
 			} else {
 				startButton.setText("Start");
 				chronometer.stop();
 			}
 		}
 	});
-      chronometer.setOnChronometerTickListener(new OnChronometerTickListener() {
-		
-		public void onChronometerTick(Chronometer chronometer) {
-			//TimeController.getInstance().tick();
-		}
-	});
+      
     }
     
     @Override
