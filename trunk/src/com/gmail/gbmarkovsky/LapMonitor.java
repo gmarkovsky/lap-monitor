@@ -15,13 +15,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
-//import android.widget.TextView;
 
 public class LapMonitor extends Activity implements PropertyChangeListener {
 	private Chronometer chronometer;
 	private Button startButton;
-	//private TextView text;
 	private OnChronometerTickListener chronoTick;
+	//private TextView text;
 	
     /** Called when the activity is first created. */
     @Override
@@ -35,14 +34,14 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
         setContentView(R.layout.main);
         chronometer = (Chronometer) findViewById(R.id.main_chronometer);
         startButton = (Button) findViewById(R.id.button_start);
-        //text = (TextView) findViewById(R.id.textView2);
-        initListeners();
+        //text = (TextView) findViewById(R.id.indicator);
         chronoTick = new OnChronometerTickListener() {
     		
     		public void onChronometerTick(Chronometer chronometer) {
     			TimeController.getInstance().tick();
     		}
     	};
+        initListeners();
     	// тестовые точки
     	CheckPointsManager.getInstance().createTimeCheckPoint(18000, true);
     	CheckPointsManager.getInstance().createTimeCheckPoint(40000, true);
@@ -54,7 +53,6 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     	startButton.setOnClickListener(new OnClickListener() {
 		
     		public void onClick(View arg0) {
-    			TimeController.getInstance().reset();
     			if (startButton.getText().equals("Start")) {
     				startButton.setText("Stop");
     				chronometer.setBase(SystemClock.elapsedRealtime());
@@ -96,6 +94,8 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     }
 
 	public void propertyChange(PropertyChangeEvent event) {
-		//text.setText(event.getNewValue().toString());
+//		if (event.getPropertyName().equals(TimeController.TICK)) {
+//			text.setText(event.getNewValue().toString());
+//		}
 	}
 }

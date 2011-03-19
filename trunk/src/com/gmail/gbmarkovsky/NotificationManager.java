@@ -37,7 +37,7 @@ public class NotificationManager {
 		ScheduledThreadPoolExecutor se = new ScheduledThreadPoolExecutor(5);
 		Runnable runtask = new Runnable() {
 			
-			@Override
+
 			public void run() {
 				alert.cancel();
 			}
