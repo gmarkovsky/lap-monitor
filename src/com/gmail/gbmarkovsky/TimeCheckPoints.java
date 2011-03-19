@@ -49,7 +49,6 @@ public class TimeCheckPoints extends Activity implements PropertyChangeListener 
 	}
 
 
-	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		if (event.getPropertyName().equals(CheckPointsManager.ADDED_TIME_CHECK_POINT)) { 
 			arrayAdapter.add((TimeCheckPoint) event.getNewValue());
