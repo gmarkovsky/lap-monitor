@@ -1,10 +1,13 @@
-package com.gmail.gbmarkovsky;
+package com.gmail.gbmarkovsky.lm.controllers;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import com.gmail.gbmarkovsky.lm.distance.DistanceCheckPoint;
+import com.gmail.gbmarkovsky.lm.distance.TimeCheckPoint;
 
 /**
  * Хранит в себе набор контрольных точек и управляет их жизненным циклом.

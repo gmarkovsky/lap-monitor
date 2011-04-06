@@ -1,15 +1,15 @@
-package com.gmail.gbmarkovsky;
+package com.gmail.gbmarkovsky.lm.distance;
 
 /**
- * Контрольная точка по времени
+ * Контрольная точка по расстоянию
  * @author george
  *
  */
-public class TimeCheckPoint {
+public class DistanceCheckPoint {
 	/**
 	 * Значение контрольной точки
 	 */
-	private long time;
+	public double distance;
 	
 	/**
 	 * Признак того, что точка является одинарной. Если равен
@@ -24,25 +24,33 @@ public class TimeCheckPoint {
 	 */
 	public int count = 0;
 	
-	public TimeCheckPoint(long time) {
-		this.time = time;
+	/**
+	 * Создание контрольной точки
+	 * @param distance
+	 */
+	public DistanceCheckPoint(double distance) {
+		this.distance = distance;
 		this.single = true;
 	}
-
-	public TimeCheckPoint(long time, boolean single) {
-		this.time = time;
+	
+	/**
+	 * Создание контрольной точки с заданной кратностью {@code single}
+	 * @param distance
+	 */
+	public DistanceCheckPoint(double distance, boolean single) {
+		this.distance = distance;
 		this.single = single;
 	}
 
-	public long getTime() {
+	public double getDistance() {
 		if (isSingle()) {
-			return time;
+			return distance;
 		}
-		return time * (count + 1);
+		return distance * (count + 1);
 	}
 
-	public void setTime(long time) {
-		this.time = time;
+	public void setDistance(double distance) {
+		this.distance = distance;
 	}
 
 	public boolean isSingle() {
@@ -61,15 +69,12 @@ public class TimeCheckPoint {
 	
 	@Override
 	public String toString() {
-		int seconds = (int) (time / 1000);
-		int minutes = seconds / 60;
-		seconds = seconds % 60;
 		String s;
 		if (isSingle()) {
 			s = "";
 		} else {
 			s = " *";
 		}
-		return Integer.toString(minutes) + " m:" + Integer.toString(seconds) + " s" + s;
+		return Double.toString(distance) + " m" + s;
 	}
 }

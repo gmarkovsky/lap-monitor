@@ -1,4 +1,4 @@
-package com.gmail.gbmarkovsky;
+package com.gmail.gbmarkovsky.lm.gui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,6 +9,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
+import com.gmail.gbmarkovsky.R;
+import com.gmail.gbmarkovsky.lm.controllers.CheckPointsManager;
 
 public class AddTimeCheckPoint extends Activity{
 	private Button okButton;

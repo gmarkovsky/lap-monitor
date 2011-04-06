@@ -1,4 +1,4 @@
-package com.gmail.gbmarkovsky;
+package com.gmail.gbmarkovsky.lm.distance;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -12,6 +12,10 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.gmail.gbmarkovsky.R;
+import com.gmail.gbmarkovsky.lm.controllers.CheckPointsManager;
+import com.gmail.gbmarkovsky.lm.gui.AddDistanceCheckPoint;
 
 public class DistanceCheckPoints extends Activity implements PropertyChangeListener {
 	private Button addButton;
