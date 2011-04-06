@@ -1,4 +1,4 @@
-package com.gmail.gbmarkovsky;
+package com.gmail.gbmarkovsky.lm.controllers;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

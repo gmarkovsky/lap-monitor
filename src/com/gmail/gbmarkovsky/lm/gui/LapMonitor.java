@@ -1,4 +1,4 @@
-package com.gmail.gbmarkovsky;
+package com.gmail.gbmarkovsky.lm.gui;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -15,6 +15,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
+
+import com.gmail.gbmarkovsky.R;
+import com.gmail.gbmarkovsky.lm.controllers.CheckPointsManager;
+import com.gmail.gbmarkovsky.lm.controllers.NotificationManager;
+import com.gmail.gbmarkovsky.lm.controllers.TimeController;
+import com.gmail.gbmarkovsky.lm.distance.DistanceCheckPoints;
+import com.gmail.gbmarkovsky.lm.distance.TimeCheckPoints;
 
 public class LapMonitor extends Activity implements PropertyChangeListener {
 	private Chronometer chronometer;

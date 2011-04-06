@@ -1,4 +1,4 @@
-package com.gmail.gbmarkovsky;
+package com.gmail.gbmarkovsky.lm.controllers;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -6,6 +6,10 @@ import java.util.concurrent.TimeUnit;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
+
+import com.gmail.gbmarkovsky.R;
+import com.gmail.gbmarkovsky.lm.distance.TimeCheckPoint;
+import com.gmail.gbmarkovsky.lm.gui.LapMonitor;
 
 public class NotificationManager {
 

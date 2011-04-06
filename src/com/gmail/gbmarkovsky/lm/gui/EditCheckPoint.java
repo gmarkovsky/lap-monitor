@@ -1,4 +1,6 @@
-package com.gmail.gbmarkovsky;
+package com.gmail.gbmarkovsky.lm.gui;
+
+import com.gmail.gbmarkovsky.R;
 
 import android.app.Activity;
 import android.os.Bundle;
