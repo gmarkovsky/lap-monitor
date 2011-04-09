@@ -19,7 +19,7 @@ import android.util.Pair;
  * @author george
  *
  */
-public class DistanceController {
+public class DistanceController {	
 	private static DistanceController instance;
 	private final PropertyChangeSupport propertyChangeSupport;
 	
@@ -39,7 +39,7 @@ public class DistanceController {
 				DistanceController.this.location = location;
 				DistanceController.this.time = SystemClock.elapsedRealtime();
 				trace.add(Pair.create(DistanceController.this.location, DistanceController.this.time));
-				firePropertyChange(LOCATION, oldLocation, location);
+				firePropertyChange(LOCATION_CHANGED, oldLocation, location);
 			}
 			
 			public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -85,5 +85,5 @@ public class DistanceController {
 		propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
 	}
 	
-	public static final String LOCATION = "Location";
+	public static final String LOCATION_CHANGED = "locationChanged";
 }

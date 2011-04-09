@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Menu;
@@ -15,9 +16,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
+import android.widget.TextView;
 
 import com.gmail.gbmarkovsky.R;
 import com.gmail.gbmarkovsky.lm.controllers.CheckPointsManager;
+import com.gmail.gbmarkovsky.lm.controllers.DistanceController;
 import com.gmail.gbmarkovsky.lm.controllers.NotificationManager;
 import com.gmail.gbmarkovsky.lm.controllers.TimeController;
 import com.gmail.gbmarkovsky.lm.distance.DistanceCheckPoints;
@@ -27,7 +30,8 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 	private Chronometer chronometer;
 	private Button startButton;
 	private OnChronometerTickListener chronoTick;
-	//private TextView text;
+	private TextView latText;
+	private TextView longText;
 	
     /** Called when the activity is first created. */
     @Override
@@ -38,7 +42,11 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
         TimeController.create();
         TimeController.getInstance().addPropertyChangeListener(this);
         TimeController.getInstance().addPropertyChangeListener(CheckPointsManager.getInstance());
+        DistanceController.create(this);
+        DistanceController.getInstance().addPropertyChangeListener(this);
         setContentView(R.layout.main);
+        latText = (TextView) findViewById(R.id.latitude_text);
+        longText = (TextView) findViewById(R.id.longitude_text);
         chronometer = (Chronometer) findViewById(R.id.main_chronometer);
         startButton = (Button) findViewById(R.id.button_start);
         //text = (TextView) findViewById(R.id.indicator);
@@ -104,5 +112,10 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 //		if (event.getPropertyName().equals(TimeController.TICK)) {
 //			text.setText(event.getNewValue().toString());
 //		}
+		if (event.getPropertyName().equals(DistanceController.LOCATION_CHANGED)) {
+			Location location = (Location) event.getNewValue();
+			latText.setText(Double.toString(location.getLatitude()));
+			longText.setText(Double.toString(location.getLongitude()));
+		}
 	}
 }

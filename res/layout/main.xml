@@ -7,6 +7,11 @@
     <TextView android:layout_width="wrap_content" android:text="@string/title" android:layout_height="wrap_content" android:id="@+id/textView1" android:textSize="12pt"></TextView>
     <RelativeLayout android:id="@+id/relativeLayout1" android:layout_width="match_parent" android:layout_height="match_parent">
         <Chronometer android:layout_alignParentTop="true" android:layout_height="wrap_content" android:text="Chronometer" android:layout_width="match_parent" android:gravity="center_horizontal" android:textSize="16pt" android:id="@+id/main_chronometer"></Chronometer>
+        <LinearLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/linearLayout2" android:layout_below="@+id/linearLayout1" android:layout_alignLeft="@+id/linearLayout1" android:layout_alignRight="@+id/linearLayout1">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/latitude_text" android:text="TextView"></TextView>
+            <TextView android:layout_height="wrap_content" android:text=" : " android:layout_width="wrap_content" android:id="@+id/loc_delim"></TextView>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/longitude_text" android:text="TextView"></TextView>
+        </LinearLayout>
         <LinearLayout android:layout_width="wrap_content" android:layout_below="@+id/main_chronometer" android:id="@+id/linearLayout1" android:layout_height="wrap_content" android:layout_alignLeft="@+id/main_chronometer" android:layout_alignRight="@+id/main_chronometer">
             <Button android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/button_start" android:text="@string/start"></Button>
         </LinearLayout>
