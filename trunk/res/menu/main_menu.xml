@@ -3,4 +3,5 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Контрольные точки" android:id="@+id/miCheckPoints"></item>
     <item android:id="@+id/miTimeCheckPoints" android:title="Время"></item>
+    <item android:title="Карта" android:id="@+id/miMap"></item>
 </menu>

@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gmail.gbmarkovsky.R;
 import com.gmail.gbmarkovsky.lm.controllers.CheckPointsManager;
@@ -101,6 +102,10 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 			intent = new Intent(this, TimeCheckPoints.class);
 			startActivity(intent);
 			break;
+		case R.id.miMap:
+			intent = new Intent(this, MapViewer.class);
+			startActivity(intent);
+			break;
 			
 		default:
 			break;
@@ -114,8 +119,10 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 //		}
 		if (event.getPropertyName().equals(DistanceController.LOCATION_CHANGED)) {
 			Location location = (Location) event.getNewValue();
-			latText.setText(Double.toString(location.getLatitude()));
-			longText.setText(Double.toString(location.getLongitude()));
+            Toast.makeText(getBaseContext(), 
+                    "Location changed : \nLat: " + location.getLatitude() + 
+                    " Lng: " + location.getLongitude(), 
+                    Toast.LENGTH_LONG).show();
 		}
 	}
 }
