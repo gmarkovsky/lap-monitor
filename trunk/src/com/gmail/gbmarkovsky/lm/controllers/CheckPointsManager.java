@@ -82,6 +82,7 @@ public class CheckPointsManager implements PropertyChangeListener {
 					times.remove(t);
 				}
 				// Тут будет вызов метода класса-оповестителя о прохождении контрольной точки
+				DistanceController.getInstance().getTrace().fixTimeCheckPoint(t.getTime());
 				NotificationManager.getInstance().notifyTime(t);
 				break;
 			}
