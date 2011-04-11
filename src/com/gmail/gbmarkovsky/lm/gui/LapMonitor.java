@@ -16,7 +16,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.gbmarkovsky.R;
@@ -26,13 +25,15 @@ import com.gmail.gbmarkovsky.lm.controllers.NotificationManager;
 import com.gmail.gbmarkovsky.lm.controllers.TimeController;
 import com.gmail.gbmarkovsky.lm.distance.DistanceCheckPoints;
 import com.gmail.gbmarkovsky.lm.distance.TimeCheckPoints;
+import com.gmail.gbmarkovsky.lm.distance.Trace;
+import com.gmail.gbmarkovsky.lm.io.TraceSerializer;
 
 public class LapMonitor extends Activity implements PropertyChangeListener {
 	private Chronometer chronometer;
 	private Button startButton;
 	private OnChronometerTickListener chronoTick;
-	private TextView latText;
-	private TextView longText;
+//	private TextView latText;
+//	private TextView longText;
 	
     /** Called when the activity is first created. */
     @Override
@@ -46,8 +47,8 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
         DistanceController.create(this);
         DistanceController.getInstance().addPropertyChangeListener(this);
         setContentView(R.layout.main);
-        latText = (TextView) findViewById(R.id.latitude_text);
-        longText = (TextView) findViewById(R.id.longitude_text);
+//        latText = (TextView) findViewById(R.id.latitude_text);
+//        longText = (TextView) findViewById(R.id.longitude_text);
         chronometer = (Chronometer) findViewById(R.id.main_chronometer);
         startButton = (Button) findViewById(R.id.button_start);
         //text = (TextView) findViewById(R.id.indicator);
@@ -73,10 +74,14 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     				startButton.setText("Stop");
     				chronometer.setBase(SystemClock.elapsedRealtime());
     				chronometer.start();
+    				DistanceController.getInstance().startLogging();
     			} else {
     				startButton.setText("Start");
     				chronometer.stop();
     				chronometer.setBase(SystemClock.elapsedRealtime());
+    				DistanceController.getInstance().stopLogging();
+    				Trace trace = DistanceController.getInstance().getTrace();
+					TraceSerializer.writeTrace(trace);
     			}
     		}
     	});
@@ -125,4 +130,43 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
                     Toast.LENGTH_LONG).show();
 		}
 	}
+	
+//	public void saveTrace() {
+//		boolean mExternalStorageAvailable = false;
+//		boolean mExternalStorageWriteable = false;
+//		String state = Environment.getExternalStorageState();
+//
+//		if (Environment.MEDIA_MOUNTED.equals(state)) {
+//		    mExternalStorageAvailable = mExternalStorageWriteable = true;
+//		} else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+//		    mExternalStorageAvailable = true;
+//		    mExternalStorageWriteable = false;
+//		} else {
+//		    mExternalStorageAvailable = mExternalStorageWriteable = false;
+//		}
+//		
+//	    File path = Environment.getExternalStoragePublicDirectory(
+//	            Environment.DIRECTORY_PICTURES);
+//	    File file = new File(path, "test.txt");
+//
+//	    try {
+//	        path.mkdirs();
+//
+//	        OutputStream os = new FileOutputStream(file);
+//	        String string = new String("Hello world!");
+//	        os.write(string.getBytes("utf-8"));
+//	        os.close();
+//
+//	        MediaScannerConnection.scanFile(this,
+//	                new String[] { file.toString() }, null,
+//	                new MediaScannerConnection.OnScanCompletedListener() {
+//	            public void onScanCompleted(String path, Uri uri) {
+//	                Log.i("ExternalStorage", "Scanned " + path + ":");
+//	                Log.i("ExternalStorage", "-> uri=" + uri);
+//	            }
+//	        });
+//	    } catch (IOException e) {
+//	        Log.w("ExternalStorage", "Error writing " + file, e);
+//	    }
+//	}
 }
