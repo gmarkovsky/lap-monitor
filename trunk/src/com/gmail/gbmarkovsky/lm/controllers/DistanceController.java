@@ -88,6 +88,10 @@ public class DistanceController {
 		return trace;
 	}
 	
+	public void addLocationListener(LocationListener locationListener) {
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+	}
+	
 	public void addPropertyChangeListener(PropertyChangeListener p) {
 		propertyChangeSupport.addPropertyChangeListener(p);
 	}

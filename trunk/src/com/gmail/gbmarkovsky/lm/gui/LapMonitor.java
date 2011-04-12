@@ -76,6 +76,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     				startTime = System.currentTimeMillis();
     				chronometer.setBase(SystemClock.elapsedRealtime());
     				chronometer.start();
+    				DistanceController.getInstance().resetLigging();
     				DistanceController.getInstance().startLogging();
     			} else {
     				startButton.setText("Start");
@@ -85,12 +86,8 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     				Trace trace = DistanceController.getInstance().getTrace();
     				Calendar time = new GregorianCalendar();
     				time.setTimeInMillis(startTime);
-//    				String fileName = "trace" + time.year + "-" +
-//    									time.month + "-" + time.monthDay + "_" +
-//    									time.hour + "-" + time.minute + "-" +time.second + ".kml";
     				String fileName = String.format("trace_%1$tY-%1$tm-%1$td_%1$tH-%1$tM-%1$tS.kml", time);
 					TraceSerializer.writeTrace(trace, fileName);
-					DistanceController.getInstance().resetLigging();
     			}
     		}
     	});
@@ -108,11 +105,11 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     public boolean onOptionsItemSelected(MenuItem item) {
     	Intent intent;
     	switch (item.getItemId()) {
-		case R.id.miCheckPoints:
+		case R.id.miDistance:
 			intent = new Intent(this, DistanceCheckPoints.class);
 			startActivity(intent);
 			break;
-		case R.id.miTimeCheckPoints:
+		case R.id.miTime:
 			intent = new Intent(this, TimeCheckPoints.class);
 			startActivity(intent);
 			break;

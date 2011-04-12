@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Контрольные точки" android:id="@+id/miCheckPoints"></item>
-    <item android:id="@+id/miTimeCheckPoints" android:title="Время"></item>
-    <item android:title="Карта" android:id="@+id/miMap"></item>
+    <item   android:id="@+id/miCheckPoints"
+    		android:title="Контрольные точки" android:menuCategory="container">
+        <menu>
+            <item   android:id="@+id/miTime"
+            		android:title="По времени"></item>
+            <item   android:id="@+id/miDistance"
+            		android:title="По расстоянию"></item>
+        </menu>
+    </item>
+    <item   android:id="@+id/miMap"
+    		android:title="Карта"></item>
 </menu>

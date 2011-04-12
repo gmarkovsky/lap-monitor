@@ -41,8 +41,9 @@ public final class R {
         public static final int main=0x7f090018;
         public static final int main_chronometer=0x7f090014;
         public static final int miCheckPoints=0x7f09001c;
-        public static final int miMap=0x7f09001e;
-        public static final int miTimeCheckPoints=0x7f09001d;
+        public static final int miDistance=0x7f09001e;
+        public static final int miMap=0x7f09001f;
+        public static final int miTime=0x7f09001d;
         public static final int relativeLayout1=0x7f090013;
         public static final int spDisMes=0x7f090004;
         public static final int textView1=0x7f090005;
