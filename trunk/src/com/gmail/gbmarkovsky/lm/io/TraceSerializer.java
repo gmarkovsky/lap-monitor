@@ -4,12 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import org.xmlpull.v1.XmlSerializer;
 
 import android.location.Location;
 import android.os.Environment;
-import android.text.format.Time;
 import android.util.Log;
 import android.util.Pair;
 import android.util.Xml;
@@ -18,8 +19,8 @@ import com.gmail.gbmarkovsky.lm.distance.Trace;
 
 public class TraceSerializer {
 	
-	public static void writeTrace(Trace trace) {
-	       File newxmlfile = new File(Environment.getExternalStorageDirectory()+"/new.kml");
+	public static void writeTrace(Trace trace, String fileName) {
+	       File newxmlfile = new File(Environment.getExternalStorageDirectory() + "/" + fileName);
 	        try{
 	        	newxmlfile.createNewFile();
 	        }catch(IOException e) {
@@ -51,9 +52,9 @@ public class TraceSerializer {
 				double lat = location.getLatitude();
 				double lon = location.getLongitude();
 				double alt = location.getAltitude();
-				Time time = new Time();
-				time.set(point.second);
-				String timeString = time.hour + ":" + time.minute + ":" + time.second;
+				Calendar time = new GregorianCalendar();
+				time.setTimeInMillis(point.second);
+				String timeString = String.format("%1$tH:%1$tM:%1$tS", time);
 				serializer.startTag(null, "Placemark");
 				serializer.startTag(null, "name");
 				serializer.text("Start");
@@ -76,12 +77,12 @@ public class TraceSerializer {
 				lat = location.getLatitude();
 				lon = location.getLongitude();
 				alt = location.getAltitude();
-				time.set(point.second);
-				timeString = time.hour + ":" + time.minute + ":" + time.second;
+				time.setTimeInMillis(point.second);
+				timeString = String.format("%1$tH:%1$tM:%1$tS", time);
 				
 				serializer.startTag(null, "Placemark");
 				serializer.startTag(null, "name");
-				serializer.text("Start");
+				serializer.text("Finish");
 				serializer.endTag(null, "name");
 				serializer.startTag(null, "description");
 				serializer.cdsect("<div dir=\"ltr\">Это точка финиша. Время финиша "+timeString+"</div>");
@@ -134,15 +135,14 @@ public class TraceSerializer {
 					lat = location.getLatitude();
 					lon = location.getLongitude();
 					alt = location.getAltitude();
-					time = new Time();
-					time.set(point.second);
-					timeString = time.hour + ":" + time.minute + ":" + time.second;
+					time.setTimeInMillis(point.second);
+					timeString = String.format("%1$tH:%1$tM:%1$tS", time);
 					serializer.startTag(null, "Placemark");
 					serializer.startTag(null, "name");
 					serializer.text("TimeCheck "+timeString);
 					serializer.endTag(null, "name");
 					serializer.startTag(null, "description");
-					serializer.cdsect("<div dir=\"ltr\">Контрольная точка по времени"+timeString+"</div>");
+					serializer.cdsect("<div dir=\"ltr\">Контрольная точка по времени "+timeString+"</div>");
 					serializer.endTag(null, "description");
 					serializer.startTag(null, "styleUrl");
 					serializer.text("#timeCheckMarker");

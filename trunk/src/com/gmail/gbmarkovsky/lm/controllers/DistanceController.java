@@ -37,12 +37,12 @@ public class DistanceController {
 			public void onLocationChanged(Location location) {
 				Location oldLocation = DistanceController.this.location;
 				DistanceController.this.location = location;
-				//DistanceController.this.time = SystemClock.elapsedRealtime();
-				DistanceController.this.time = location.getTime();
+				DistanceController.this.time = System.currentTimeMillis();
+				//DistanceController.this.time = location.getTime();
 				if (logging) {
 					trace.addPoint(DistanceController.this.location, DistanceController.this.time);
-					firePropertyChange(LOCATION_CHANGED, oldLocation, location);
 				}
+					firePropertyChange(LOCATION_CHANGED, oldLocation, location);
 			}
 			
 			public void onStatusChanged(String provider, int status, Bundle extras) {
