@@ -3,176 +3,281 @@
 <Document>
 	<name>Test ski trace</name> 
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:04:49Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.938187,59.85067699999999,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:05:34Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.939989,59.8521,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:06:38Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.941963,59.852638,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:08:12Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.944881,59.85345800000001,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:09:19Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.946554,59.85472899999999,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:10:01Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.948486,59.855419,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:10:41Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.950073,59.856216,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:11:10Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.950718,59.857662,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:11:35Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.952221,59.859772,0  </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:11:59Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.952177,59.862701,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:12:09Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.952349,59.864838,0</coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:12:39Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.954193,59.866066,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:13:25Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.957626,59.868282,0  </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:14:02Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.959946,59.86964,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:14:32Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.962006,59.870651,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:15:04Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.96329100000001,59.87229199999999,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:15:04Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.963936,59.873993,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:15:27Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.96398,59.87444300000001,0  </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:16:04Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.964409,59.87479,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:16:51Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates> 30.964495,59.875542,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:17:16Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.963634,59.874466,0  </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:17:56Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.963335,59.873344,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:18:30Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.96295,59.872311,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:18:58Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.96165999999999,59.870609,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:19:23Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.951878,59.86479199999999,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:20:11Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.951834,59.861797,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:21:13Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.950718,59.861732,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:21:47Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.949129,59.860786,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:22:13Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.948143,59.861153,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:22:56Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.94659800000001,59.861649,0</coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:23:24Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.93956,59.856972,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:23:46Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.939001,59.855892,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:24:35Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.938702,59.85429799999999,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:25:03Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.938959,59.851734,0 </coordinates>
 		</Point>
    	</Placemark>
 	<Placemark>
+		<TimeStamp>
+			<when>2011-01-19T12:25:54Z</when>
+		</TimeStamp>
 		<Point>
 			<coordinates>30.937971,59.85080700000001,0</coordinates>
 		</Point>

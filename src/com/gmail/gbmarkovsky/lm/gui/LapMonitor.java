@@ -2,6 +2,8 @@ package com.gmail.gbmarkovsky.lm.gui;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.gmail.gbmarkovsky.R;
 import com.gmail.gbmarkovsky.lm.controllers.CheckPointsManager;
@@ -32,8 +34,8 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 	private Chronometer chronometer;
 	private Button startButton;
 	private OnChronometerTickListener chronoTick;
-//	private TextView latText;
-//	private TextView longText;
+	private long startTime;
+	private TextView coordinates;
 	
     /** Called when the activity is first created. */
     @Override
@@ -47,11 +49,10 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
         DistanceController.create(this);
         DistanceController.getInstance().addPropertyChangeListener(this);
         setContentView(R.layout.main);
-//        latText = (TextView) findViewById(R.id.latitude_text);
-//        longText = (TextView) findViewById(R.id.longitude_text);
+        coordinates = (TextView) findViewById(R.id.coordinates);
+        coordinates.setText("00:00:00.000 С  00:00:00.000 В");
         chronometer = (Chronometer) findViewById(R.id.main_chronometer);
         startButton = (Button) findViewById(R.id.button_start);
-        //text = (TextView) findViewById(R.id.indicator);
         chronoTick = new OnChronometerTickListener() {
     		
     		public void onChronometerTick(Chronometer chronometer) {
@@ -72,6 +73,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     		public void onClick(View arg0) {
     			if (startButton.getText().equals("Start")) {
     				startButton.setText("Stop");
+    				startTime = System.currentTimeMillis();
     				chronometer.setBase(SystemClock.elapsedRealtime());
     				chronometer.start();
     				DistanceController.getInstance().startLogging();
@@ -81,7 +83,14 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     				chronometer.setBase(SystemClock.elapsedRealtime());
     				DistanceController.getInstance().stopLogging();
     				Trace trace = DistanceController.getInstance().getTrace();
-					TraceSerializer.writeTrace(trace);
+    				Calendar time = new GregorianCalendar();
+    				time.setTimeInMillis(startTime);
+//    				String fileName = "trace" + time.year + "-" +
+//    									time.month + "-" + time.monthDay + "_" +
+//    									time.hour + "-" + time.minute + "-" +time.second + ".kml";
+    				String fileName = String.format("trace_%1$tY-%1$tm-%1$td_%1$tH-%1$tM-%1$tS.kml", time);
+					TraceSerializer.writeTrace(trace, fileName);
+					DistanceController.getInstance().resetLigging();
     			}
     		}
     	});
@@ -119,54 +128,21 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     }
 
 	public void propertyChange(PropertyChangeEvent event) {
-//		if (event.getPropertyName().equals(TimeController.TICK)) {
-//			text.setText(event.getNewValue().toString());
-//		}
 		if (event.getPropertyName().equals(DistanceController.LOCATION_CHANGED)) {
 			Location location = (Location) event.getNewValue();
-            Toast.makeText(getBaseContext(), 
-                    "Location changed : \nLat: " + location.getLatitude() + 
-                    " Lng: " + location.getLongitude(), 
-                    Toast.LENGTH_LONG).show();
+			String latitudeString = "";
+			if (location.getLatitude() > 0) {
+				latitudeString = Location.convert(location.getLatitude(), Location.FORMAT_SECONDS) + " C";
+			} else {
+				latitudeString = Location.convert(-location.getLatitude(), Location.FORMAT_SECONDS) + " Ю";
+			}
+			String longtudeString = "";
+			if (location.getLatitude() > 0) {
+				longtudeString = Location.convert(location.getLongitude(), Location.FORMAT_SECONDS) + " В";
+			} else {
+				longtudeString = Location.convert(-location.getLongitude(), Location.FORMAT_SECONDS) + " З";
+			}
+            coordinates.setText(latitudeString + "  " + longtudeString);
 		}
 	}
-	
-//	public void saveTrace() {
-//		boolean mExternalStorageAvailable = false;
-//		boolean mExternalStorageWriteable = false;
-//		String state = Environment.getExternalStorageState();
-//
-//		if (Environment.MEDIA_MOUNTED.equals(state)) {
-//		    mExternalStorageAvailable = mExternalStorageWriteable = true;
-//		} else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-//		    mExternalStorageAvailable = true;
-//		    mExternalStorageWriteable = false;
-//		} else {
-//		    mExternalStorageAvailable = mExternalStorageWriteable = false;
-//		}
-//		
-//	    File path = Environment.getExternalStoragePublicDirectory(
-//	            Environment.DIRECTORY_PICTURES);
-//	    File file = new File(path, "test.txt");
-//
-//	    try {
-//	        path.mkdirs();
-//
-//	        OutputStream os = new FileOutputStream(file);
-//	        String string = new String("Hello world!");
-//	        os.write(string.getBytes("utf-8"));
-//	        os.close();
-//
-//	        MediaScannerConnection.scanFile(this,
-//	                new String[] { file.toString() }, null,
-//	                new MediaScannerConnection.OnScanCompletedListener() {
-//	            public void onScanCompleted(String path, Uri uri) {
-//	                Log.i("ExternalStorage", "Scanned " + path + ":");
-//	                Log.i("ExternalStorage", "-> uri=" + uri);
-//	            }
-//	        });
-//	    } catch (IOException e) {
-//	        Log.w("ExternalStorage", "Error writing " + file, e);
-//	    }
-//	}
 }

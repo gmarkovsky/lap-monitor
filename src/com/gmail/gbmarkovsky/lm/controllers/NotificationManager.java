@@ -51,4 +51,8 @@ public class NotificationManager {
 	    se.schedule(runtask, 10000, TimeUnit.MILLISECONDS);
 		alert.show();
 	}
+//    Toast.makeText(getBaseContext(), 
+//            "Location changed : \nLat: " + location.getLatitude() + 
+//            " Lng: " + location.getLongitude(), 
+//            Toast.LENGTH_LONG).show();
 }
