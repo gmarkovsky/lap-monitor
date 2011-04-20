@@ -2,6 +2,7 @@ package com.gmail.gbmarkovsky.lm.gui;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -28,7 +29,10 @@ import com.gmail.gbmarkovsky.lm.controllers.TimeController;
 import com.gmail.gbmarkovsky.lm.distance.DistanceCheckPoints;
 import com.gmail.gbmarkovsky.lm.distance.TimeCheckPoints;
 import com.gmail.gbmarkovsky.lm.distance.Trace;
+import com.gmail.gbmarkovsky.lm.gmaps.FusionTableAdapter;
 import com.gmail.gbmarkovsky.lm.io.TraceSerializer;
+import com.google.gdata.util.AuthenticationException;
+import com.google.gdata.util.ServiceException;
 
 public class LapMonitor extends Activity implements PropertyChangeListener {
 	private Chronometer chronometer;
@@ -36,6 +40,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 	private OnChronometerTickListener chronoTick;
 	private long startTime;
 	private TextView coordinates;
+	private FusionTableAdapter fusionTableAdapter;
 	
     /** Called when the activity is first created. */
     @Override
@@ -59,6 +64,12 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     			TimeController.getInstance().tick();
     		}
     	};
+    	try {
+			fusionTableAdapter = new FusionTableAdapter("gbmarkovsky@gmail.com", "vtnfkkjltntrnjh13");
+		} catch (AuthenticationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         initListeners();
     	// тестовые точки
     	CheckPointsManager.getInstance().createTimeCheckPoint(18000, true);
@@ -88,6 +99,14 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     				time.setTimeInMillis(startTime);
     				String fileName = String.format("trace_%1$tY-%1$tm-%1$td_%1$tH-%1$tM-%1$tS.kml", time);
 					TraceSerializer.writeTrace(trace, fileName);
+					try {
+						fusionTableAdapter.createQuery("CREATE TABLE '" + fileName +
+								"' (description:STRING, name:STRING, geometry:LOCATION)");
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (ServiceException e) {
+						e.printStackTrace();
+					}
     			}
     		}
     	});
