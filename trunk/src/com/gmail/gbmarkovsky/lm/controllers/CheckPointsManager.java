@@ -101,6 +101,9 @@ public class CheckPointsManager implements PropertyChangeListener {
 					distances.remove(d);
 				}
 				// Тут будет вызов метода класса-оповестителя о прохождении контрольной точки
+				DistanceController.getInstance().getTrace().fixDistanceCheckPoint(d.getDistance());
+				NotificationManager.getInstance().notifyDistance(d);
+				break;
 			}
 		}
 	}
@@ -131,6 +134,8 @@ public class CheckPointsManager implements PropertyChangeListener {
 	public void propertyChange(PropertyChangeEvent event) {
 		if (event.getPropertyName().equals(TimeController.TICK)) {
 			checkTime((Long) event.getNewValue());
+		} else if (event.getPropertyName().equals(DistanceController.DISTANCE_CHANGED)) {
+			checkDistance((Double) event.getNewValue());
 		}
 	}
 }

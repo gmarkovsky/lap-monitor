@@ -23,6 +23,8 @@ public class DistanceController {
 	
 	Trace trace = new Trace();
 	
+	private double distance;
+	
 	private Location location;
 	private long time;
 	private LocationManager locationManager;
@@ -41,6 +43,9 @@ public class DistanceController {
 				//DistanceController.this.time = location.getTime();
 				if (logging) {
 					trace.addPoint(DistanceController.this.location, DistanceController.this.time);
+					double oldDistance = distance;
+					distance += calculateDistance(oldLocation, location);
+					firePropertyChange(DISTANCE_CHANGED, oldDistance, distance);
 				}
 					firePropertyChange(LOCATION_CHANGED, oldLocation, location);
 			}
@@ -64,8 +69,11 @@ public class DistanceController {
 		logging = true;
 	}
 	
-	public void resetLigging() {
+	public void resetLogging() {
 		trace.reset();
+		double oldDistance = distance;
+		distance = 0;
+		firePropertyChange(DISTANCE_CHANGED, oldDistance, distance);
 	}
 	
 	public void stopLogging() {
@@ -88,6 +96,37 @@ public class DistanceController {
 		return trace;
 	}
 	
+	/**
+	 * Вычисляет Great Circle Distance между <code>loc1</code> и <code>loc2</code>.
+	 * @param loc1
+	 * @param loc2
+	 * @return
+	 */
+	private double calculateDistance(Location loc1, Location loc2) {
+		double result = 0;
+		if (loc1 == null) {
+			return result;
+		}
+		double lat1 = Math.toRadians(loc1.getLatitude());
+		double lat2 = Math.toRadians(loc2.getLatitude());
+		double lon1 = Math.toRadians(loc1.getLongitude());
+		double lon2 = Math.toRadians(loc2.getLongitude());
+		
+		double delta = 2 * Math.asin(Math.sqrt(
+					Math.pow(Math.sin((lat1 - lat2) / 2), 2) +
+					Math.cos(lat1) * 
+					Math.cos(lat2) *
+					Math.pow(Math.sin((lon1 - lon2) / 2), 2)
+		));
+
+		result = delta * C_RADIUS_EARTH_M;
+		return result;
+	}
+	
+	public double getDistance() {
+		return distance;
+	}
+	
 	public void addLocationListener(LocationListener locationListener) {
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 	}
@@ -105,4 +144,7 @@ public class DistanceController {
 	}
 	
 	public static final String LOCATION_CHANGED = "locationChanged";
+	public static final String DISTANCE_CHANGED = "distanceChanged";
+	
+	private static final double C_RADIUS_EARTH_M = 6370973.27862;
 }

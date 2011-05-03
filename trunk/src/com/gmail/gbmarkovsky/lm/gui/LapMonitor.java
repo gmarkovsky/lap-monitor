@@ -36,6 +36,9 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 	private OnChronometerTickListener chronoTick;
 	private long startTime;
 	private TextView coordinates;
+	private TextView distance;
+	private TextView speed;
+	private TextView speed_av;
 //	private FusionTableAdapter2 fusionTableAdapter;
 	
     /** Called when the activity is first created. */
@@ -49,9 +52,20 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
         TimeController.getInstance().addPropertyChangeListener(CheckPointsManager.getInstance());
         DistanceController.create(this);
         DistanceController.getInstance().addPropertyChangeListener(this);
+        DistanceController.getInstance().addPropertyChangeListener(CheckPointsManager.getInstance());
         setContentView(R.layout.main);
         coordinates = (TextView) findViewById(R.id.coordinates);
         coordinates.setText("00:00:00.000 С  00:00:00.000 В");
+        
+        distance = (TextView) findViewById(R.id.distance_left);
+        distance.setText("Пройдено 0 м");
+        
+        speed = (TextView) findViewById(R.id.speed);
+        speed.setText("Скорость 0 км/ч");
+        
+        speed_av = (TextView) findViewById(R.id.speed_avarage);
+        speed_av.setText("Средняя скорость 0 км/ч");
+        
         chronometer = (Chronometer) findViewById(R.id.main_chronometer);
         startButton = (Button) findViewById(R.id.button_start);
         chronoTick = new OnChronometerTickListener() {
@@ -77,7 +91,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     				startTime = System.currentTimeMillis();
     				chronometer.setBase(SystemClock.elapsedRealtime());
     				chronometer.start();
-    				DistanceController.getInstance().resetLigging();
+    				DistanceController.getInstance().resetLogging();
     				DistanceController.getInstance().startLogging();
     			} else {
     				startButton.setText("Start");
@@ -90,6 +104,7 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     				String fileName = String.format("trace_%1$tY-%1$tm-%1$td_%1$tH-%1$tM-%1$tS.kml", time);
 					TraceSerializer.writeTrace(trace, fileName);
 					//FusionTableLoader.writeTrace(trace, fileName);
+					DistanceController.getInstance().resetLogging();
     			}
     		}
     	});
@@ -142,6 +157,15 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
 				longtudeString = Location.convert(-location.getLongitude(), Location.FORMAT_SECONDS) + " З";
 			}
             coordinates.setText(latitudeString + "  " + longtudeString);
+            double v = location.getSpeed(); 
+            speed.setText("Скорость " + (int) Math.ceil(v) + " км/ч");
+            long t = TimeController.getInstance().getTime() / 1000;
+            double s = DistanceController.getInstance().getDistance();
+            double v_a = 3.6 * s / (double) t;
+            speed_av.setText("Средняя скорость " + (int) Math.ceil(v_a) + " км/ч");
+		} else if (event.getPropertyName().equals(DistanceController.DISTANCE_CHANGED)) {
+			double s = (Double) event.getNewValue();
+			distance.setText("Пройдено " + (int) Math.ceil(s) + " м");
 		}
 	}
 }

@@ -9,6 +9,7 @@ import android.util.Pair;
 public class Trace {
 	private List<Pair<Location, Long>> trace = new ArrayList<Pair<Location, Long>>();
 	private List<Pair<Location, Long>> timeChecks = new ArrayList<Pair<Location, Long>>();
+	private List<Pair<Location, Double>> distanceChecks = new ArrayList<Pair<Location, Double>>();
 	private Pair<Location, Long> start;
 	private Pair<Location, Long> finish;
 	
@@ -23,6 +24,10 @@ public class Trace {
 	
 	public void fixTimeCheckPoint(long l) {
 		timeChecks.add(finish);
+	}
+	
+	public void fixDistanceCheckPoint(double d) {
+		distanceChecks.add(new Pair<Location, Double>(finish.first, d));
 	}
 	
 	public boolean isEmpty() {
@@ -45,6 +50,10 @@ public class Trace {
 		return timeChecks;
 	}
 
+	public List<Pair<Location, Double>> getDistanceChecks() {
+		return distanceChecks;
+	}
+	
 	public void reset() {
 		start = null;
 		finish = null;
