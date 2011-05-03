@@ -23,7 +23,7 @@ public class Trace {
 	}
 	
 	public void fixTimeCheckPoint(long l) {
-		timeChecks.add(finish);
+		timeChecks.add(new Pair<Location, Long>(finish.first, l));
 	}
 	
 	public void fixDistanceCheckPoint(double d) {

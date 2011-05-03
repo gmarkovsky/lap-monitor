@@ -169,7 +169,7 @@ public class TraceSerializer {
 					serializer.cdsect("<div dir=\"ltr\">Контрольная точка по расстоянию "+distance+"</div>");
 					serializer.endTag(null, "description");
 					serializer.startTag(null, "styleUrl");
-					serializer.text("#timeCheckMarker");
+					serializer.text("#distanceCheckMarker");
 					serializer.endTag(null, "styleUrl");
 					serializer.startTag(null, "Point");
 					serializer.startTag(null, "coordinates");
@@ -221,6 +221,17 @@ public class TraceSerializer {
 			serializer.startTag(null, "Icon");
 			serializer.startTag(null, "href");
 			serializer.text("http://www.google.com/mapfiles/ms/micons/grn-pushpin.png");
+			serializer.endTag(null, "href");
+			serializer.endTag(null, "Icon");
+			serializer.endTag(null, "IconStyle");
+			serializer.endTag(null, "Style");
+			
+			serializer.startTag(null, "Style");
+			serializer.attribute(null, "id", "distanceCheckMarker");
+			serializer.startTag(null, "IconStyle");
+			serializer.startTag(null, "Icon");
+			serializer.startTag(null, "href");
+			serializer.text("http://www.google.com/mapfiles/ms/micons/blue-pushpin.png");
 			serializer.endTag(null, "href");
 			serializer.endTag(null, "Icon");
 			serializer.endTag(null, "IconStyle");
