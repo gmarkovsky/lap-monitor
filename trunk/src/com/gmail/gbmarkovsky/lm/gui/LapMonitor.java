@@ -76,10 +76,11 @@ public class LapMonitor extends Activity implements PropertyChangeListener {
     	};
         initListeners();
     	// тестовые точки
-    	CheckPointsManager.getInstance().createTimeCheckPoint(18000, true);
-    	CheckPointsManager.getInstance().createTimeCheckPoint(40000, true);
+    	CheckPointsManager.getInstance().createTimeCheckPoint(10000, true);
+    	CheckPointsManager.getInstance().createTimeCheckPoint(30000, true);
     	CheckPointsManager.getInstance().createDistanceCheckPoint(1000, true);
     	CheckPointsManager.getInstance().createDistanceCheckPoint(2000, true);
+    	CheckPointsManager.getInstance().createDistanceCheckPoint(4000, true);
     }
     
     private void initListeners() {
