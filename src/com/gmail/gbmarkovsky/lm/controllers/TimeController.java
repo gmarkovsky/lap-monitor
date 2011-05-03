@@ -34,6 +34,10 @@ public class TimeController {
 		time = 0;
 	}
 	
+	public long getTime() {
+		return time;
+	}
+	
 	public void addPropertyChangeListener(PropertyChangeListener p) {
 		propertyChangeSupport.addPropertyChangeListener(p);
 	}

@@ -135,7 +135,7 @@ public class TraceSerializer {
 					lat = location.getLatitude();
 					lon = location.getLongitude();
 					alt = location.getAltitude();
-					time.setTimeInMillis(point.second);
+					time.setTimeInMillis(pnt.second);
 					timeString = String.format("%1$tH:%1$tM:%1$tS", time);
 					serializer.startTag(null, "Placemark");
 					serializer.startTag(null, "name");
@@ -143,6 +143,30 @@ public class TraceSerializer {
 					serializer.endTag(null, "name");
 					serializer.startTag(null, "description");
 					serializer.cdsect("<div dir=\"ltr\">Контрольная точка по времени "+timeString+"</div>");
+					serializer.endTag(null, "description");
+					serializer.startTag(null, "styleUrl");
+					serializer.text("#timeCheckMarker");
+					serializer.endTag(null, "styleUrl");
+					serializer.startTag(null, "Point");
+					serializer.startTag(null, "coordinates");
+					serializer.text(lon + "," + lat + "," + alt + " ");
+					serializer.endTag(null, "coordinates");
+					serializer.endTag(null, "Point");
+					serializer.endTag(null, "Placemark");
+				}
+				
+				for (Pair<Location, Double> pnt: trace.getDistanceChecks()) {
+					location = pnt.first;
+					lat = location.getLatitude();
+					lon = location.getLongitude();
+					alt = location.getAltitude();
+					double distance = pnt.second;
+					serializer.startTag(null, "Placemark");
+					serializer.startTag(null, "name");
+					serializer.text("DistanceCheck "+distance);
+					serializer.endTag(null, "name");
+					serializer.startTag(null, "description");
+					serializer.cdsect("<div dir=\"ltr\">Контрольная точка по расстоянию "+distance+"</div>");
 					serializer.endTag(null, "description");
 					serializer.startTag(null, "styleUrl");
 					serializer.text("#timeCheckMarker");

@@ -9,6 +9,11 @@
         <Chronometer android:layout_alignParentTop="true" android:layout_height="wrap_content" android:text="Chronometer" android:layout_width="match_parent" android:gravity="center_horizontal" android:textSize="16pt" android:id="@+id/main_chronometer" android:paddingTop="20pt"></Chronometer>
         <FrameLayout android:layout_below="@+id/linearLayout1" android:layout_width="wrap_content" android:id="@+id/frameLayout1" android:layout_alignLeft="@+id/linearLayout1" android:layout_alignRight="@+id/linearLayout1" android:layout_height="match_parent">
             <TextView android:text="TextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/coordinates" android:textSize="8pt" android:gravity="bottom" android:layout_gravity="center_horizontal|bottom" android:paddingBottom="10pt"></TextView>
+            <LinearLayout android:id="@+id/linearLayout2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView android:id="@+id/distance_left" android:layout_height="wrap_content" android:text="TextView" android:layout_width="wrap_content" android:textSize="8pt" android:paddingTop="8pt"></TextView>
+                <TextView android:id="@+id/speed" android:layout_height="wrap_content" android:text="TextView" android:layout_width="wrap_content" android:textSize="8pt" android:paddingTop="8pt"></TextView>
+                <TextView android:id="@+id/speed_avarage" android:layout_height="wrap_content" android:text="TextView" android:layout_width="wrap_content" android:textSize="8pt" android:paddingTop="8pt"></TextView>
+            </LinearLayout>
         </FrameLayout>
         <LinearLayout android:layout_width="wrap_content" android:layout_below="@+id/main_chronometer" android:id="@+id/linearLayout1" android:layout_height="wrap_content" android:layout_alignLeft="@+id/main_chronometer" android:layout_alignRight="@+id/main_chronometer" android:paddingTop="20pt">
             <Button android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/button_start" android:text="@string/start" android:textSize="12pt"></Button>
